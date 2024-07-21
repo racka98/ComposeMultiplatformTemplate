@@ -1,4 +1,4 @@
-rootProject.name = "KMPHelloWorld"
+rootProject.name = "ComposeMultiplatformTemplate"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

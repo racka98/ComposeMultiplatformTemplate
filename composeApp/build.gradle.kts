@@ -19,6 +19,9 @@ kotlin {
     
     jvm("desktop")
     
+    /****
+     * iOS Setup for Multiplatform
+     * Uncomment this and add iOSMain & nativeMain folders
     listOf(
         iosX64(),
         iosArm64(),
@@ -29,6 +32,7 @@ kotlin {
             isStatic = true
         }
     }
+    ******/
     
     sourceSets {
         val desktopMain by getting
