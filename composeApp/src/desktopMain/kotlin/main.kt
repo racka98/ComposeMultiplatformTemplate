@@ -1,9 +1,9 @@
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import di.initKoin
+import di.KoinMain
 
 fun main() {
-    initKoin()
+    KoinMain.initKoin()
     application {
         Window(
             onCloseRequest = ::exitApplication,
