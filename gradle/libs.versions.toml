@@ -1,14 +1,4 @@
 [versions]
-# App Configs
-android-compileSdk = "34"
-android-minSdk = "26"
-android-targetSdk = "34"
-android-versioncode = "1"
-android-versionName = "1.0.0"
-app-packagename = "org.example.project"
-desktop-current-version = "1.0.1"
-desktop-packageName = "org.example.project"
-
 #Important
 kotlin = "2.0.0"
 compose-plugin = "1.6.11"
