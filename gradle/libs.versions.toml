@@ -191,6 +191,13 @@ detekt_rule_twitter_compose = { module = "com.twitter.compose.rules:detekt", ver
 jna_core = { module = "net.java.dev.jna:jna", version.ref = "jna"}
 jna_platform = { module = "net.java.dev.jna:jna-platform", version.ref = "jna"}
 
+# Build logic dependencies
+android-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugaring" }
+android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+compose-compiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+jetbrains-compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose-plugin"}
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
