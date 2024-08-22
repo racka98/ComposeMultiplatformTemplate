@@ -1,14 +1,14 @@
 package org.example.project
 
 import android.app.Application
-import di.KoinMain
 import org.koin.android.ext.koin.androidContext
+import work.racka.template.common.di.KoinMain
 
 class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        KoinMain.initKoin {
+        KoinMain.init {
             androidContext(this@MyApplication)
         }
     }
