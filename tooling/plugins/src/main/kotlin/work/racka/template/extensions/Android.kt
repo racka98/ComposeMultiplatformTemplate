@@ -22,17 +22,6 @@ internal fun Project.configureAndroid() {
 
         buildFeatures.buildConfig = true
 
-        buildTypes {
-            getByName("release") {
-                isMinifyEnabled = true
-                isShrinkResources = true
-                proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    rootProject.file("tooling/proguard-config/proguard-rules.pro").absolutePath
-                )
-            }
-        }
-
         packagingOptions {
             resources {
                 excludes += mutableSetOf(
