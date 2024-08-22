@@ -54,7 +54,7 @@ jobs:
         uses: ilharp/sign-android-release@v1
         id: sign_aab
         with:
-          releaseDir: android/app/build/outputs/bundle/release
+          releaseDir: composeApp/build/outputs/bundle/release
           signingKey: ${{ secrets.KEYSTORE_FILE }}
           keyAlias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -92,7 +92,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: android-debug.apk
-          path: ./android/app/build/outputs/apk/debug/app-debug.apk
+          path: ./composeApp/build/outputs/apk/debug/app-debug.apk
 
       - if: ${{ matrix.config.target == 'Windows' }}
         name: Upload Windows MSI Package
