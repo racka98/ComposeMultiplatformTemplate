@@ -93,6 +93,10 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
             sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
             sourceSets["main"].res.srcDirs("src/androidMain/res")
             sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+
+            defaultConfig {
+                applicationId = Versions.PACKAGE_NAME
+            }
         }
 
         // Configure Android App level

@@ -1,17 +1,17 @@
-package di
+package work.racka.template.common.di
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 
 object KoinMain {
-    fun initKoin(
+    fun init(
         appDeclaration: KoinAppDeclaration = {}
     ) {
         startKoin {
             appDeclaration()
 
-            // Initialize Modules
-            modules(platformModule, sharedModule)
+            // Initialize modules
+            Common.run { install() }
         }
     }
 }
