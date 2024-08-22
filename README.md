@@ -1,3 +1,7 @@
+# Compose Multiplatform Template
+
+![Code Checks](https://github.com/racka98/ComposeMultiplatformTemplate/actions/workflows/code_check_pipeline.yml/badge.svg) ![Build Pipeline](https://github.com/racka98/ComposeMultiplatformTemplate/actions/workflows/ci_cd_pipeline.yml/badge.svg)
+
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
 
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
