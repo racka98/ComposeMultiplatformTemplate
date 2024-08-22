@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class MyViewModel(
     private val repository: MyRepository
-): ViewModel() {
+) : ViewModel() {
 
     fun getHelloWorldString(): String = repository.helloWorld()
 }
