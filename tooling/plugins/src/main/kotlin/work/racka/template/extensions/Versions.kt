@@ -7,6 +7,6 @@ internal object Versions {
     val VERSION_CODE = 1
     val VERSION_NAME = "1.0.0"
     val PACKAGE_NAME = "org.example.project"
-    val DESKTOP_VERSION = "1.0.1"
+    val DESKTOP_VERSION = "1.0.0"
     val DESKTOP_PACKAGE_NAME = "template"
 }

@@ -8,6 +8,7 @@ import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.compose.desktop.DesktopExtension
+import org.jetbrains.compose.desktop.application.dsl.JvmApplicationDistributions
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import work.racka.template.extensions.Versions
@@ -16,6 +17,7 @@ import work.racka.template.extensions.configureAndroid
 import work.racka.template.extensions.configureAndroidCompose
 import work.racka.template.extensions.configureKMP
 import work.racka.template.extensions.libs
+import java.io.File
 import kotlin.jvm.optionals.getOrNull
 
 /**
@@ -78,10 +80,25 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
                 application {
                     mainClass = "MainKt"
 
+                    // Put your icons in ./tooling/desktop/icons/launcher
+                    val iconsRoot = rootProject.file("tooling/desktop/icons/launcher")
                     nativeDistributions {
-                        targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
                         packageName = Versions.DESKTOP_PACKAGE_NAME
                         packageVersion = Versions.DESKTOP_VERSION
+                        description = "Template App"
+                        copyright = "© 2024 APIMOR LABS. All rights reserved."
+                        vendor = "APIMOR LABS"
+                        version = Versions.DESKTOP_VERSION
+                        licenseFile.set(rootProject.file("LICENSE"))
+
+                        setupDistribution(iconsRoot)
+
+                        // ProGuard
+                        buildTypes.release.proguard {
+                            configurationFiles.from(rootProject.file("tooling/desktop/desktop.pro"))
+                            obfuscate.set(true)
+                            isEnabled.set(true)
+                        }
                     }
                 }
             }
@@ -116,3 +133,29 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
     }
 }
 
+private fun JvmApplicationDistributions.setupDistribution(iconsRoot: File) {
+    targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+    modules("java.net.http", "java.sql")
+
+    linux {
+        iconFile.set(iconsRoot.resolve("linux.png"))
+        debMaintainer = "apimorlabs@gmail.com"
+        menuGroup = packageName
+        appCategory = "Productivity"
+    }
+
+    windows {
+        iconFile.set(iconsRoot.resolve("windows.ico"))
+        shortcut = true
+        menuGroup = packageName
+        //https://wixtoolset.org/documentation/manual/v3/howtos/general/generate_guids.html
+        // You must change this
+        upgradeUuid = "0FC0D185-EFDF-4F64-86EF-CA8A855F49A7"
+    }
+
+    macOS {
+        iconFile.set(iconsRoot.resolve("macos.icns"))
+        bundleID = packageName
+        appCategory = "public.app-category.productivity"
+    }
+}
