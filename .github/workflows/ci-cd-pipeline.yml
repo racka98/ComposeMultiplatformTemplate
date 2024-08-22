@@ -66,7 +66,7 @@ jobs:
         uses: ilharp/sign-android-release@v1
         id: sign_apk
         with:
-          releaseDir: android/app/build/outputs/apk/release
+          releaseDir: composeApp/build/outputs/apk/release
           signingKey: ${{ secrets.KEYSTORE_FILE }}
           keyAlias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
