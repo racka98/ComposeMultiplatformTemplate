@@ -95,7 +95,7 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
 
                         // ProGuard
                         buildTypes.release.proguard {
-                            configurationFiles.from(rootProject.file("tooling/desktop/desktop.pro"))
+                            configurationFiles.from(rootProject.file("tooling/proguard-config/desktop.pro"))
                             obfuscate.set(true)
                             isEnabled.set(true)
                         }
@@ -123,11 +123,21 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
                 targetSdk = Versions.TARGET_SDK
             }
 
+            namespace = Versions.PACKAGE_NAME
+
+            buildTypes {
+                getByName("release") {
+                    isMinifyEnabled = true
+                    isShrinkResources = true
+                    proguardFiles(
+                        getDefaultProguardFile("proguard-android-optimize.txt"),
+                        rootProject.file("tooling/proguard-config/proguard-rules.pro").absolutePath
+                    )
+                }
+            }
+
             configureAndroid()
             configureAndroidCompose(this)
-            android {
-                namespace = Versions.PACKAGE_NAME
-            }
         }
 
     }
