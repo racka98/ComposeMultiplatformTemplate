@@ -92,7 +92,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: android-debug.apk
-          path: ./composeApp/build/outputs/apk/debug/app-debug.apk
+          path: ./composeApp/build/outputs/apk/debug/*.apk
 
       - if: ${{ matrix.config.target == 'Windows' }}
         name: Upload Windows MSI Package
