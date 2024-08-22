@@ -1,4 +1,4 @@
-package dependencies
+package work.racka.template.common.sources
 
 import androidx.lifecycle.ViewModel
 
