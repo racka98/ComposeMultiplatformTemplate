@@ -6,6 +6,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import work.racka.template.extensions.Versions
 import work.racka.template.extensions.android
 import work.racka.template.extensions.configureAndroid
 import work.racka.template.extensions.configureKMP
@@ -32,8 +33,14 @@ class KotlinMultiplatformLibPlugin : Plugin<Project> {
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.androidMain.dependencies {
                 implementation(libs.findLibrary("androidx-activity-compose").get())
-                implementation(libs.findLibrary("androidx.appcompat").get())
-                implementation(libs.findLibrary("androidx.core").get())
+                implementation(libs.findLibrary("androidx-appcompat").get())
+                implementation(libs.findLibrary("androidx-core-ktx").get())
+
+                implementation(libs.findLibrary("koin-android").get())
+            }
+
+            sourceSets.commonMain.dependencies {
+                api(libs.findLibrary("koin-core").get())
             }
         }
 
@@ -48,8 +55,7 @@ class KotlinMultiplatformLibPlugin : Plugin<Project> {
         // Configure Android Library
         extensions.configure<LibraryExtension> {
             defaultConfig {
-                testOptions.targetSdk =
-                    libs.findVersion("android-targetSdk").getOrNull()?.strictVersion?.toIntOrNull()
+                testOptions.targetSdk = Versions.TARGET_SDK
             }
 
 

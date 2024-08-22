@@ -21,17 +21,18 @@ dependencies {
 }
 
 gradlePlugin {
+    // IDs for these custom plugins are obtained from libs.versions.toml for ease of use in project
     plugins {
         register("composeMultiplatformAppPlugin") {
-            id = "plugin.template.compose.multiplatform.app"
+            id = libs.plugins.compose.multiplatform.app.get().pluginId
             implementationClass = "work.racka.template.plugins.ComposeMultiplatformAppPlugin"
         }
         register("composeMultiplatformLibPlugin") {
-            id = "plugin.template.compose.multiplatform.lib"
+            id = libs.plugins.compose.multiplatform.lib.get().pluginId
             implementationClass = "work.racka.template.plugins.ComposeMultiplatformLibPlugin"
         }
         register("kotlinMultiplatformLibPlugin") {
-            id = "plugin.template.kotlin.multiplatform.lib"
+            id = libs.plugins.kotlin.multiplatform.lib.get().pluginId
             implementationClass = "work.racka.template.plugins.KotlinMultiplatformLibPlugin"
         }
     }

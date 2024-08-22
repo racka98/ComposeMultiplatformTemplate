@@ -7,7 +7,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import kotlin.jvm.optionals.getOrNull
 
 
 internal fun Project.configureAndroidCompose(
@@ -15,10 +14,10 @@ internal fun Project.configureAndroidCompose(
 ) {
     commonExtension.apply {
 
-        compileSdk = libs.findVersion("android-compileSdk").getOrNull()?.strictVersion?.toIntOrNull()
+        compileSdk = Versions.COMPILE_SDK
 
         defaultConfig {
-            minSdk = libs.findVersion("android-minSdk").getOrNull()?.strictVersion?.toIntOrNull()
+            minSdk = Versions.MIN_SDK
         }
 
         buildFeatures {

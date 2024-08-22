@@ -4,18 +4,17 @@ import com.android.build.gradle.BaseExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import kotlin.jvm.optionals.getOrNull
 
 internal fun Project.configureAndroid() {
     android {
-        compileSdkVersion = libs.findVersion("android-compileSdk").getOrNull()?.strictVersion
+        compileSdkVersion = "android-${Versions.COMPILE_SDK}"
 
         defaultConfig {
-            minSdk = libs.findVersion("android-minSdk").getOrNull()?.strictVersion?.toIntOrNull()
-            targetSdk = libs.findVersion("android-targetSdk").getOrNull()?.strictVersion?.toIntOrNull()
-            applicationId = libs.findVersion("app-packagename").getOrNull()?.strictVersion
-            versionCode = libs.findVersion("android-versioncode").getOrNull()?.strictVersion?.toIntOrNull()
-            versionName = libs.findVersion("android-versionName").getOrNull()?.strictVersion
+            minSdk = Versions.MIN_SDK
+            targetSdk = Versions.TARGET_SDK
+            applicationId = Versions.PACKAGE_NAME
+            versionCode = Versions.VERSION_CODE
+            versionName = Versions.VERSION_NAME
         }
 
         compileOptions {
@@ -51,4 +50,5 @@ internal fun Project.configureAndroid() {
     }
 }
 
-internal fun Project.android(action: BaseExtension.() -> Unit) = extensions.configure<BaseExtension>(action)
+internal fun Project.android(action: BaseExtension.() -> Unit) =
+    extensions.configure<BaseExtension>(action)

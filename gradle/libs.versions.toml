@@ -206,3 +206,8 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSeriazation = { id = "plugin.serialization", version.ref = "kotlin" }
 detektGradle = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
+
+## Gradle Convention custom plugins
+compose-multiplatform-app = {id = "plugin.template.compose.multiplatform.app" }
+compose-multiplatform-lib = {id = "plugin.template.compose.multiplatform.lib" }
+kotlin-multiplatform-lib = {id = "plugin.template.kotlin.multiplatform.lib" }

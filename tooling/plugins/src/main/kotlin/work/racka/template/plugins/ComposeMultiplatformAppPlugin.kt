@@ -10,6 +10,7 @@ import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.compose.desktop.DesktopExtension
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import work.racka.template.extensions.Versions
 import work.racka.template.extensions.android
 import work.racka.template.extensions.configureAndroid
 import work.racka.template.extensions.configureAndroidCompose
@@ -43,8 +44,11 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
             sourceSets.androidMain.dependencies {
                 implementation(composeExt.dependencies.preview)
                 implementation(libs.findLibrary("androidx-activity-compose").get())
-                implementation(libs.findLibrary("androidx.appcompat").get())
-                implementation(libs.findLibrary("androidx.core").get())
+                implementation(libs.findLibrary("androidx-appcompat").get())
+                implementation(libs.findLibrary("androidx-core-ktx").get())
+
+                implementation(libs.findLibrary("koin-android").get())
+                implementation(libs.findLibrary("koin-androidx-compose").get())
             }
 
             sourceSets.commonMain.dependencies {
@@ -54,6 +58,10 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
                 implementation(composeExt.dependencies.ui)
                 implementation(composeExt.dependencies.components.resources)
                 implementation(composeExt.dependencies.components.uiToolingPreview)
+
+                api(libs.findLibrary("koin-core").get())
+                implementation(libs.findLibrary("koin-compose").get())
+                implementation(libs.findLibrary("koin-compose-viewmodel").get())
 
                 implementation(libs.findLibrary("lifecycle-viewmodel").get())
                 implementation(libs.findLibrary("navigation-compose").get())
@@ -72,9 +80,8 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
 
                     nativeDistributions {
                         targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-                        packageName = libs.findVersion("app-packagename").getOrNull()?.strictVersion
-                        packageVersion =
-                            libs.findVersion("desktop-current-version").getOrNull()?.strictVersion
+                        packageName = Versions.DESKTOP_PACKAGE_NAME
+                        packageVersion = Versions.DESKTOP_VERSION
                     }
                 }
             }
@@ -92,14 +99,13 @@ class ComposeMultiplatformAppPlugin : Plugin<Project> {
         extensions.configure<ApplicationExtension> {
 
             defaultConfig {
-                targetSdk =
-                    libs.findVersion("android-targetSdk").getOrNull()?.strictVersion?.toIntOrNull()
+                targetSdk = Versions.TARGET_SDK
             }
 
             configureAndroid()
             configureAndroidCompose(this)
             android {
-                namespace = libs.findVersion("app-packagename").getOrNull()?.strictVersion
+                namespace = Versions.PACKAGE_NAME
             }
         }
 

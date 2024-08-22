@@ -8,6 +8,7 @@ import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import work.racka.template.extensions.Versions
 import work.racka.template.extensions.android
 import work.racka.template.extensions.configureAndroid
 import work.racka.template.extensions.configureAndroidCompose
@@ -39,10 +40,12 @@ class ComposeMultiplatformLibPlugin : Plugin<Project> {
         // Compose Dependencies
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.androidMain.dependencies {
-                implementation(composeExt.dependencies.preview)
                 implementation(libs.findLibrary("androidx-activity-compose").get())
-                implementation(libs.findLibrary("androidx.appcompat").get())
-                implementation(libs.findLibrary("androidx.core").get())
+                implementation(libs.findLibrary("androidx-appcompat").get())
+                implementation(libs.findLibrary("androidx-core-ktx").get())
+
+                implementation(libs.findLibrary("koin-android").get())
+                implementation(libs.findLibrary("koin-androidx-compose").get())
             }
 
             sourceSets.commonMain.dependencies {
@@ -52,6 +55,10 @@ class ComposeMultiplatformLibPlugin : Plugin<Project> {
                 implementation(composeExt.dependencies.ui)
                 implementation(composeExt.dependencies.components.resources)
                 implementation(composeExt.dependencies.components.uiToolingPreview)
+
+                api(libs.findLibrary("koin-core").get())
+                implementation(libs.findLibrary("koin-compose").get())
+                implementation(libs.findLibrary("koin-compose-viewmodel").get())
 
                 implementation(libs.findLibrary("lifecycle-viewmodel").get())
                 implementation(libs.findLibrary("navigation-compose").get())
@@ -73,8 +80,7 @@ class ComposeMultiplatformLibPlugin : Plugin<Project> {
         // Configure Android Library
         extensions.configure<LibraryExtension> {
             defaultConfig {
-                testOptions.targetSdk =
-                    libs.findVersion("android-targetSdk").getOrNull()?.strictVersion?.toIntOrNull()
+                testOptions.targetSdk = Versions.TARGET_SDK
             }
 
 
