@@ -14,10 +14,15 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.detektGradle) apply false
+    alias(libs.plugins.detekt.setup) apply false
 }
 
 allprojects {
+
+
     afterEvaluate {
+        apply(plugin = libs.plugins.detekt.setup.get().pluginId)
+
         // Remove log pollution until Android support in KMP improves.
         project.extensions
             .findByType<org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension>()

@@ -14,10 +14,12 @@ java {
 }
 
 dependencies {
+    // Dependencies setup here to enable detection of corresponding source files for plugins
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.compose.compiler.gradlePlugin)
     compileOnly(libs.jetbrains.compose.gradlePlugin)
+    compileOnly(libs.detekt.gradle.plugin)
 }
 
 gradlePlugin {
@@ -34,6 +36,10 @@ gradlePlugin {
         register("kotlinMultiplatformLibPlugin") {
             id = libs.plugins.kotlin.multiplatform.lib.get().pluginId
             implementationClass = "work.racka.template.plugins.KotlinMultiplatformLibPlugin"
+        }
+        register("detektPlugin") {
+            id = libs.plugins.detekt.setup.get().pluginId
+            implementationClass = "work.racka.template.plugins.DetektConventionPlugin"
         }
     }
 }
