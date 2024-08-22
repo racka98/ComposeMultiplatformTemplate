@@ -11,6 +11,7 @@ object KoinMain {
             appDeclaration()
 
             // Initialize modules
+            Common.run { install() }
         }
     }
 }
