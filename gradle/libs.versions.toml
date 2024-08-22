@@ -1,14 +1,4 @@
 [versions]
-# App Configs
-android-compileSdk = "34"
-android-minSdk = "26"
-android-targetSdk = "34"
-android-versioncode = "1"
-android-versionName = "1.0.0"
-app-packagename = "org.example.project"
-desktop-current-version = "1.0.1"
-desktop-packageName = "org.example.project"
-
 #Important
 kotlin = "2.0.0"
 compose-plugin = "1.6.11"
@@ -66,7 +56,7 @@ multiplatform-settings = "0.9" # TODO: Update settings
 
 # Linter
 ktlint_gradle = "11.0.0"
-linter_twitter_compose = "0.0.22"
+linter_twitter_compose = "0.0.26"
 detekt = "1.23.6"
 
 # Extras
@@ -211,3 +201,4 @@ detektGradle = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
 compose-multiplatform-app = {id = "plugin.template.compose.multiplatform.app" }
 compose-multiplatform-lib = {id = "plugin.template.compose.multiplatform.lib" }
 kotlin-multiplatform-lib = {id = "plugin.template.kotlin.multiplatform.lib" }
+detekt-setup = {id = "plugin.template.detekt.setup" }
