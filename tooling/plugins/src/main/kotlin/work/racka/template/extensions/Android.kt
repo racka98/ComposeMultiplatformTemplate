@@ -12,7 +12,6 @@ internal fun Project.configureAndroid() {
         defaultConfig {
             minSdk = Versions.MIN_SDK
             targetSdk = Versions.TARGET_SDK
-            applicationId = Versions.PACKAGE_NAME
             versionCode = Versions.VERSION_CODE
             versionName = Versions.VERSION_NAME
         }
