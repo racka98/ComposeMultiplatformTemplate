@@ -26,6 +26,9 @@ jobs:
           distribution: temurin
           cache: 'gradle'
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Run Detekt
         run: |
           ./gradlew --console=plain detekt --stacktrace

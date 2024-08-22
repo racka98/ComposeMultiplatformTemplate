@@ -42,6 +42,9 @@ jobs:
         with:
           xcode-version: latest-stable
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Build Targets
         run: |
           ./gradlew --console=plain ${{ matrix.config.tasks }} --info
@@ -56,7 +59,7 @@ jobs:
           keyAlias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: 33.0.0
+          buildToolsVersion: 34.0.0
 
       - if: ${{ matrix.config.target == 'Android' }}
         name: Sign Android APK
