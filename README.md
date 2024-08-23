@@ -51,7 +51,8 @@ Their uses are as follows:
 
 ### Detekt
 
-To run detekt for code analysis and formatting you use the command `./gradlew detekt` or `gradle detekt`
+To run detekt for code analysis and formatting you use the command `./gradlew detekt`
+or `gradle detekt`
 
 ### Name changes
 
@@ -86,6 +87,10 @@ This project contains Github Actions set up in `/.github/workflows`
   The secrets needed include `KEYSTORE_FILE`, `KEYSTORE_PASSWORD`, `KEY_ALIAS` and `KEY_PASSWORD`.
   Learn more about adding these keys from [here](ilharp/sign-android-release@v1)
   and [here](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
+
+# Contributing
+
+- See [CONTRIBUTING](/CONTRIBUTING.md)
 
 Learn more
 about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
