@@ -49,6 +49,10 @@ Their uses are as follows:
 - `DetektConventionPlugin` used to configure `detekt` code analysis in the project
   level `build.gradle.kts`
 
+### Detekt
+
+To run detekt for code analysis and formatting you use the command `./gradlew detekt` or `gradle detekt`
+
 ### Name changes
 
 There are couple of names you need to change to conform with your own project.
@@ -70,6 +74,18 @@ There are couple of names you need to change to conform with your own project.
 - You should change the package names inside each source folder. Eg. `work.racka.template` to
   something of your own
 - You should use the Refactor tool of the IDE so the changes are applied everywhere necessary
+
+## Github Actions
+
+This project contains Github Actions set up in `/.github/workflows`
+
+- `code-check-pipeline.yml` contains code for running `detekt` for code analysis.
+  You can also set up other linters and unit tests inside this file
+- `ci-cd-pipeline.yml` contains code for CI/CD integrations.
+  You make sure you have provided the required secrets for the signing stage of the Android app.
+  The secrets needed include `KEYSTORE_FILE`, `KEYSTORE_PASSWORD`, `KEY_ALIAS` and `KEY_PASSWORD`.
+  Learn more about adding these keys from [here](ilharp/sign-android-release@v1)
+  and [here](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
 
 Learn more
 about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
